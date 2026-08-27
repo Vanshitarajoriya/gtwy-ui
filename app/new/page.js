@@ -118,6 +118,16 @@ function Page() {
           const createdAgent = data?.data?.agent;
           const agentId = createdAgent?._id;
           const targetVersion = createdAgent?.published_version_id || createdAgent?.versions?.[0];
+
+          const warnings = data?.data?.warnings;
+          const failedCount = (warnings?.docs?.length || 0) + (warnings?.functions?.length || 0);
+          if (failedCount > 0) {
+            toast.warning(
+              `Agent created, but ${failedCount} resource${failedCount > 1 ? "s" : ""} from the template couldn't be copied over (knowledge base or tools). Please review the agent's configuration.`,
+              { autoClose: 8000 }
+            );
+          }
+
           if (agentId && targetVersion) {
             const tab = isEmbedUser || createdAgent?.published_version_id ? "prompt" : "integration";
             route.push(`/org/${selectedOrg.id}/agents/configure/${agentId}?version=${targetVersion}&tab=${tab}`);
