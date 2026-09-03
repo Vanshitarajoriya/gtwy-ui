@@ -94,7 +94,7 @@ const RecommendedModal = ({
             <button
               data-testid="get-recommended-model-button"
               id="get-recommended-model-button"
-              className="flex items-center gap-2  rounded-md bg-gradient-to-r from-blue-800 to-orange-600 text-sm text-transparent bg-clip-text hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 rounded-md border border-primary/30 bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={handleGetRecommendations}
               disabled={isLoadingRecommendations || isPublished || !isEditor}
             >

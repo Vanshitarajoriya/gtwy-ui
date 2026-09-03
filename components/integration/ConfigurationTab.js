@@ -29,6 +29,15 @@ import { setThreadIdForVersionReducer } from "@/store/reducer/bridgeReducer";
 // Configuration Schema
 const CONFIG_SCHEMA = [
   {
+    key: "customLoadingLogoUrl",
+    type: "text",
+    label: "Create Custom Logo",
+    description: "Show a custom logo instead of the GTWY logo while the embed is loading",
+    placeholder: "https://example.com/logo.png",
+    defaultValue: "",
+    section: "Interface Options",
+  },
+  {
     key: "showHomeButton",
     type: "toggle",
     label: "Show Home Button",
@@ -747,6 +756,18 @@ const ConfigurationTab = ({ data, isConfigMode, onUnsavedChanges, onSaveRef }) =
                               </option>
                             ))}
                           </select>
+                        )}
+                        {config.type === "text" && (
+                          <input
+                            autoComplete="off"
+                            data-testid={`embed-config-text-${config.key}`}
+                            type="text"
+                            className="input input-bordered input-xs w-full mt-1"
+                            placeholder={config.placeholder || ""}
+                            value={configuration[config.key] ?? config.defaultValue}
+                            onChange={(e) => handleConfigChangeStateOnly(config.key, e.target.value)}
+                            onBlur={(e) => handleConfigBlur(config.key, e.target.value)}
+                          />
                         )}
                       </div>
                       {/* JSON Schema textarea when showResponseType is toggled off */}

@@ -41,23 +41,25 @@ const ModelTab = () => {
       </div>
 
       {!isEmbedUser && (
-        <RecommendedModal
-          params={params}
-          searchParams={searchParams}
-          apiKeySectionRef={apiKeySectionRef}
-          promptTextAreaRef={promptTextAreaRef}
-          bridgeApiKey={bridgeApiKey}
-          shouldPromptShow={shouldPromptShow}
-          service={service}
-          deafultApiKeys={showDefaultApikeys}
-          isPublished={isPublished}
-          isEditor={isEditor}
-        />
+        <div className="mb-6">
+          <RecommendedModal
+            params={params}
+            searchParams={searchParams}
+            apiKeySectionRef={apiKeySectionRef}
+            promptTextAreaRef={promptTextAreaRef}
+            bridgeApiKey={bridgeApiKey}
+            shouldPromptShow={shouldPromptShow}
+            service={service}
+            deafultApiKeys={showDefaultApikeys}
+            isPublished={isPublished}
+            isEditor={isEditor}
+          />
+        </div>
       )}
 
       <div data-testid="model-tab-config-section" id="model-tab-config-section" className="space-y-6">
         {/* Service Provider and Model Row */}
-        <div className="grid grid-cols-2 mt-2 gap-6">
+        <div className="grid grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="block text-base-content/70 text-sm font-medium">Service Provider</label>
             <ServiceDropdown
